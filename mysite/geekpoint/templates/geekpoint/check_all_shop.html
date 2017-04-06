@@ -1,0 +1,26 @@
+{% extends 'geekpoint/base.html' %}
+
+{% block content %}
+<div class="container">
+	<div class="row clearfix">
+		<div class="col-md-12 column">
+			<h3 class="text-center">
+				极客点加盟门店列表
+			</h3>
+            {% if shop_list %}
+			<ol>
+                {% for shop in shop_list %}
+				<li>
+					{{ shop.name }}&nbsp;<a href="{% url 'geekpoint:order_food' shop.pk %}">进店点餐</a>
+				</li>
+                {% endfor %}
+
+			</ol>
+            {% else %}
+            <p>抱歉，目前极客点还未有加盟的门店。</p><br/>
+            <a href="{% url 'geekpoint:create_shop' %}">我去开一家！</a>
+            {% endif %}
+		</div>
+	</div>
+</div>
+{% endblock %}

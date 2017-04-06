@@ -1,0 +1,29 @@
+{% extends 'geekpoint/base.html' %}
+
+{% block content %}
+<div class="container">
+	<div class="row clearfix">
+		<div class="col-md-12 column">
+			<h3>
+				欢迎光临{{ shop.name }},敬请点餐
+			</h3>
+            {% if food_list %}
+			<form role="form" method="post" action="{% url 'geekpoint:order_food' shop.pk %}">
+                {% csrf_token %}
+				<div class="form-group">
+					 <label for="table_no">桌号</label><input class="form-control" id="table_no" name="table_no" type="text" />
+				</div>
+                {% for food in food_list %}
+				<div class="checkbox">
+					 <label><input type="checkbox" id="food_list" name="food_list" value="{{ food.pk }}"/>{{ food.name }}</label><small>{{ food.price }}元</small>
+				</div>
+                {% endfor %}
+                <button class="btn btn-default" type="submit">下单</button>
+			</form>
+            {% else %}
+            <p>抱歉，本店暂无菜品！</p>
+            {% endif %}
+		</div>
+	</div>
+</div>
+{% endblock %}

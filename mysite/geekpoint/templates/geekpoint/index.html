@@ -1,0 +1,52 @@
+{% extends 'geekpoint/base.html' %}
+
+{% block content %}
+{% if request.user.is_authenticated %}
+    <div class="container">
+	<div class="row clearfix">
+		<div class="col-md-6 column">
+            {% if history_order_list %}
+			<h3 class="text-center">
+				我的历史订单
+			</h3>
+			<ul class="list-unstyled">
+                {% for order in history_order_list %}
+				<li>
+					单号：<strong>{{ order.order_no }}</strong>&nbsp;商店：{{ order.shop }}&nbsp;&nbsp;总价：{{ order.total }}元&nbsp;&nbsp;{{ order.created_time|date:"Y年n月d日 H时i分" }}&nbsp;&nbsp;<a href="{% url 'geekpoint:get_order' order.id %}">订单详情</a>
+				</li>
+                {% endfor %}
+			</ul> <button class="btn btn-default" type="button" href="#">查看所有</button>
+			<p><a href="{% url 'geekpoint:check_all_shop' %}">再去消费</a> </p>
+            {% else %}
+                <h3 class="text-center">
+				    你还未有历史订单。
+			    </h3>
+            <p><a href="{% url 'geekpoint:check_all_shop' %}">立即消费</a> </p>
+            {% endif %}
+		</div>
+		<div class="col-md-6 column">
+            {% if charge_shop_list %}
+			<h3 class="text-center">
+				我的商铺列表
+			</h3>
+			<ul class="list-unstyled">
+				{% for shop in charge_shop_list %}
+				<li>
+					<a href="{% url 'geekpoint:charge_shop' shop.pk %}">{{ shop.name }}</a>&nbsp;&nbsp;<a href="{% url 'geekpoint:delete_shop' shop.pk %}">删除</a>
+				</li>
+                {% endfor %}
+			</ul>
+			<button class="btn btn-default" type="button" href="{% url 'geekpoint:create_shop' %}">再开一家</button>
+            {% else %}
+            <h3 class="text-center">
+				您还未有商铺
+			</h3>
+            <p><a href="{% url 'geekpoint:create_shop' %}">立即开店</a> </p>
+            {% endif %}
+		</div>
+	</div>
+    </div>
+{% else %}
+    <h3>欢迎来到极客点，请登录后使用相关服务</h3>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends 'geekpoint/base.html' %}
+
+{% block content %}
+<div class="container">
+	<div class="row clearfix">
+		<div class="col-md-12 column">
+			<h3 class="text-center">
+				订单详情
+			</h3>
+			<ul class="list-unstyled">
+				<li>
+                    单号：<strong>{{ order.order_no }}</strong>
+				</li>
+				<li>
+					时间：<strong>{{ order.modified_time|date:"Y年n月d日 H时i分" }}</strong>
+				</li>
+				<li>
+					商店：<strong>{{ order.shop.name }}</strong>
+				</li>
+				<li>
+					菜品：<strong>{{ order.foods }}</strong>
+				</li>
+				<li>
+					总价：<strong>{{ order.total }}元</strong>
+				</li>
+				<li>
+					<a href="{% url 'geekpoint:order_food' order.shop.pk %}">再次消费</a>
+				</li>
+				<li>
+					<a href="{% url 'geekpoint:index' %}">返回主页</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+{% endblock %}

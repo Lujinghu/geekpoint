@@ -1,0 +1,42 @@
+{% extends 'geekpoint/base.html' %}
+
+{% block content %}
+<div class="container">
+	<div class="row clearfix">
+		<div class="col-md-12 column">
+			<h3>商店：<small>{{ shop.name }}</small></h3><br/>
+			<h5>菜品信息管理页面</h5>
+		</div>
+	</div>
+</div>
+<div class="container">
+	<div class="row clearfix">
+		<div class="col-md-8 column">
+            {% if food_list %}
+			<ol>
+                {% for food in food_list %}
+				<li>
+					{{ food.name }}&nbsp;售价：{{ food.price }}元&nbsp;库存情况：{{ food.get_status_display }}&nbsp;
+                    <a href="{% url 'geekpoint:edit_food' food.id %}">编辑</a>&nbsp;<a href="{% url 'geekpoint:delete_food' food.id %}">删除</a>
+				</li>
+				{% endfor %}
+			</ol>
+            <p><a href="{% url 'geekpoint:create_food' shop.id %}">新增菜品</a> </p>
+            {% else %}
+            <p>本店暂无菜单信息哦。</p><br/>
+            <p><a href="{% url 'geekpoint:create_food' shop.id %}">立即创建菜品</a> </p>
+            {% endif %}
+		</div>
+		<div class="col-md-4 column">
+			<ul>
+				<li>
+					{{ shop.name }}
+				</li>
+				<li>
+					<a href="{% url 'geekpoint:charge_shop' shop.pk %}">返回管理我的店铺</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+{% endblock %}
