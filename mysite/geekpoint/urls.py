@@ -17,4 +17,5 @@ urlpatterns = [
     url(r'^check_all_shop$', views.check_all_shop, name='check_all_shop'),
     url(r'^order_food/(?P<shop_id>\d+)$', views.order_food, name='order_food'),
     url(r'^get_order/(?P<order_id>\d+)$', views.get_order, name='get_order'),
+    url(r'^create_foodcategory/(?P<shop_id>\d+)$', views.create_foodcategory, name='create_foodcategory'),
 ]

@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'geekpoint/base.html' %}
 {% block content %}
 <div class="container">
 	<div class="row clearfix">
@@ -6,8 +6,22 @@
 			<form role="form" action="{% url 'geekpoint:create_food' shop_id %}" method="post">
                 {% csrf_token %}
                 {{ form.as_table }}
+                {% if food_category_list %}
+                {% for category in food_category_list %}
+				<div class="radio">
+					 <label><input type="radio" id="food_category_list" name="food_category_list" value="{{ category.pk }}"/>{{ category.name }}</label>
+				</div>
+                {% endfor %}
+                {% else %}
+                <p>目前没有食品分类</p>
+                {% endif %}
 				 <button class="btn btn-default" type="submit">Submit</button>
 			</form>
+            <form role="form" action="{% url 'geekpoint:create_foodcategory' shop_id %}" method="post">
+                {% csrf_token %}
+                {{ food_category_form.as_table }}
+                <button class="btn btn-default" type="submit">Submit</button>
+            </form>
 		</div>
 	</div>
 </div>

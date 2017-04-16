@@ -12,7 +12,10 @@
 				<li>
                     单号：<strong>{{ order.order_no }}</strong>&nbsp;&nbsp;桌号：<strong>{{ order.table_no }}</strong><br/>
 					总价：<strong>{{ order.total }}</strong>元<br/>
-					菜品：{{ order.foods }}
+					菜品：
+                    {% for food in order.foods.all %}
+                    {{ food }}
+                    {% endfor %}
                     <form method="post" action="{% url 'geekpoint:order_mark' order.id %}">
 						{% csrf_token %}
 						<input type="hidden" id="status" name="status" value="q"/>
@@ -35,7 +38,9 @@
 				<li>
 					单号：<strong>{{ order.order_no }}</strong>&nbsp;&nbsp;桌号：<strong>{{ order.table_no }}</strong><br/>
 					总价：<strong>{{ order.total }}</strong>元<br/>
-					菜品：{{ order.foods }}
+					菜品：{% for food in order.foods.all %}
+                          {{ food }}
+                          {% endfor %}
 					 <form method="post" action="{% url 'geekpoint:order_mark' order.id %}">
 						{% csrf_token %}
 						<input type="hidden" id="status" name="status" value="f"/>

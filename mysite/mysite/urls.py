@@ -18,11 +18,6 @@ from django.contrib import admin
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^polls/', include('polls.urls', namespace="polls")),
-    url(r'^message/', include('message.urls', namespace="message")),
-    url(r'^blog/', include('blog.urls', namespace="blog")),
-    url(r'^learnform/', include('learnform.urls', namespace='learnform')),
-    url(r'^learnauth/', include('learnauth.urls', namespace='learnauth')),
     url(r'^geekpoint/', include('geekpoint.urls', namespace='geekpoint')),
     url(r'^', include('users.urls')),
 ]

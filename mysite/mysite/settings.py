@@ -39,11 +39,6 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'polls',
-    'message',
-    'blog',
-    'learnform',
-    'learnauth',
     'geekpoint',
     'users',
 )
@@ -94,9 +89,9 @@ DATABASES = {
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
 
-LANGUAGE_CODE = 'zh-cn'
+LANGUAGE_CODE = 'zh-hans'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Shanghai'
 
 USE_I18N = True
 
@@ -115,4 +110,3 @@ STATICFILES_DIRS = (
 LOGIN_REDIRECT_URL = '/geekpoint'#终于找到坑在什么地方了，登陆后重定义的URL，需要你在前面加一个反斜杠，如果没有加，就会在当前的URL之后加上这个URL地址，深坑啊！！！！
 #  ---------------------------------------------------------
 AUTH_USER_MODEL = 'users.User'
-

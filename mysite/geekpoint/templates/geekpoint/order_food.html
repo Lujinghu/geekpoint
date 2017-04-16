@@ -15,7 +15,7 @@
 				</div>
                 {% for food in food_list %}
 				<div class="checkbox">
-					 <label><input type="checkbox" id="food_list" name="food_list" value="{{ food.pk }}"/>{{ food.name }}</label><small>{{ food.price }}元</small>
+					 <label><input type="checkbox" id="food_id_list" name="food_id_list" value="{{ food.pk }}"/>{{ food.name }}</label><small>{{ food.price }}元</small>
 				</div>
                 {% endfor %}
                 <button class="btn btn-default" type="submit">下单</button>
