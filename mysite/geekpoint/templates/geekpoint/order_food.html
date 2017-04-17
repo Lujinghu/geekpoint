@@ -4,21 +4,46 @@
 <div class="container">
 	<div class="row clearfix">
 		<div class="col-md-12 column">
-			<h3>
+			<h3 class="text-center">
 				欢迎光临{{ shop.name }},敬请点餐
 			</h3>
-            {% if food_list %}
+
+
+
+                <div class="col-md-4 column">
+                    <h4 class="text-center">菜单分类</h4>
+
+                    <ul>
+                        <li>
+                            <h5><strong><a href="{% url 'geekpoint:order_food' shop.id %}">全部菜品</a></strong></h5>
+                        </li>
+                    {% if food_category_list %}
+                        {% for food_category in food_category_list %}
+                            <li>
+                            <form method="get" action="{% url 'geekpoint:order_food' shop.id %}">
+                            <input type="hidden" value="{{ food_category.id }}" name="food_category_id" id="food_category_id"/>
+                                <button class="btn btn-default" type="submit" value="{{ food_category.name }}">{{ food_category.name }}</button>
+                            </form>
+                            </li>
+                        {% endfor %}
+                    {% endif %}
+                    </ul>
+
+        </div>
+            <div class="col-md-8 column">
+         {% if food_list %}
 			<form role="form" method="post" action="{% url 'geekpoint:order_food' shop.pk %}">
                 {% csrf_token %}
-				<div class="form-group">
-					 <label for="table_no">桌号</label><input class="form-control" id="table_no" name="table_no" type="text" />
-				</div>
                 {% for food in food_list %}
-				<div class="checkbox">
-					 <label><input type="checkbox" id="food_id_list" name="food_id_list" value="{{ food.pk }}"/>{{ food.name }}</label><small>{{ food.price }}元</small>
-				</div>
+				    <div class="checkbox">
+					    <label><input type="checkbox" id="food_id_list" name="food_id_list" value="{{ food.pk }}"/>{{ food.name }}</label><small>{{ food.price }}元</small>
+				    </div>
                 {% endfor %}
+                    <div class="form-group">
+					    <label for="table_no">桌号</label><input class="form-control" id="table_no" name="table_no" type="text" />
+				    </div>
                 <button class="btn btn-default" type="submit">下单</button>
+             </div>
 			</form>
             {% else %}
             <p>抱歉，本店暂无菜品！</p>

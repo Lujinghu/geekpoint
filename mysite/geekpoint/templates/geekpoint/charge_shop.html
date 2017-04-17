@@ -21,7 +21,7 @@
 						<input type="hidden" id="status" name="status" value="q"/>
 						<input type="submit" value="确认"/>
 					</form>
-					<a href="{% url 'geekpoint:order_delete' order.id %}">删除订单</a>
+					<a href="{% url 'geekpoint:shop_delete_order' order.id %}">删除订单</a>
                     <br/>
 				</li>
 				{% endfor %}

@@ -3,7 +3,7 @@
 {% block content %}
 <div class="container">
 	<div class="row clearfix">
-		<div class="col-md-12 column">
+		<div class="col-md-12 column text-center">
 			<h3 class="text-center">
 				订单详情
 			</h3>
@@ -18,8 +18,15 @@
 					商店：<strong>{{ order.shop.name }}</strong>
 				</li>
 				<li>
-					菜品：<strong>{{ order.foods }}</strong>
+					菜品：
 				</li>
+                <li>
+                <ol>
+                {% for food in order.foods.all %}
+                    <li><strong>{{ food.name }}</strong>&nbsp;&nbsp;{{ food.price }}元</li>
+                {% endfor %}
+                </li>
+                </ol>
 				<li>
 					总价：<strong>{{ order.total }}元</strong>
 				</li>

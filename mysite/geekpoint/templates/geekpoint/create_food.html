@@ -9,7 +9,7 @@
                 {% if food_category_list %}
                 {% for category in food_category_list %}
 				<div class="radio">
-					 <label><input type="radio" id="food_category_list" name="food_category_list" value="{{ category.pk }}"/>{{ category.name }}</label>
+					 <label><input type="radio" id="food_category_id" name="food_category_id" value="{{ category.pk }}"/>{{ category.name }}</label>
 				</div>
                 {% endfor %}
                 {% else %}

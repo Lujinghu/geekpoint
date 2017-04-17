@@ -12,7 +12,11 @@
 			<ul class="list-unstyled">
                 {% for order in history_order_list %}
 				<li>
-					单号：<strong>{{ order.order_no }}</strong>&nbsp;商店：{{ order.shop }}&nbsp;&nbsp;总价：{{ order.total }}元&nbsp;&nbsp;{{ order.created_time|date:"Y年n月d日 H时i分" }}&nbsp;&nbsp;<a href="{% url 'geekpoint:get_order' order.id %}">订单详情</a>
+					单号：<strong>{{ order.order_no }}</strong>&nbsp;
+                    商店：{{ order.shop }}&nbsp;&nbsp;
+                    总价：{{ order.total }}元&nbsp;&nbsp;{{ order.created_time|date:"Y年n月d日 H时i分" }}&nbsp;&nbsp;
+                    <a href="{% url 'geekpoint:get_order' order.id %}">订单详情</a>
+                    <a href="{% url 'geekpoint:consumer_delete_order' order.id %}">删除订单</a>
 				</li>
                 {% endfor %}
 			</ul> <button class="btn btn-default" type="button" href="#">查看所有</button>
