@@ -1,17 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="cb3dfd78-31f7-4e55-b7e6-b833c8093165" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mysite/db.sqlite3" afterPath="$PROJECT_DIR$/mysite/db.sqlite3" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mysite/geekpoint/models.py" afterPath="$PROJECT_DIR$/mysite/geekpoint/models.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mysite/geekpoint/templates/geekpoint/charge_shop.html" afterPath="$PROJECT_DIR$/mysite/geekpoint/templates/geekpoint/charge_shop.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mysite/geekpoint/templates/geekpoint/create_food.html" afterPath="$PROJECT_DIR$/mysite/geekpoint/templates/geekpoint/create_food.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mysite/geekpoint/templates/geekpoint/index.html" afterPath="$PROJECT_DIR$/mysite/geekpoint/templates/geekpoint/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mysite/geekpoint/templates/geekpoint/order_detail.html" afterPath="$PROJECT_DIR$/mysite/geekpoint/templates/geekpoint/order_detail.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mysite/geekpoint/templates/geekpoint/order_food.html" afterPath="$PROJECT_DIR$/mysite/geekpoint/templates/geekpoint/order_food.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mysite/geekpoint/urls.py" afterPath="$PROJECT_DIR$/mysite/geekpoint/urls.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mysite/geekpoint/views.py" afterPath="$PROJECT_DIR$/mysite/geekpoint/views.py" />
-    </list>
+    <list default="true" id="cb3dfd78-31f7-4e55-b7e6-b833c8093165" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />

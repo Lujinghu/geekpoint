@@ -1,0 +1,32 @@
+{% extends 'geekpoint/base.html' %}
+{% block content %}
+<div class="container">
+	<div class="row clearfix">
+		<div class="col-md-12 column">
+			<form role="form" action="{% url 'geekpoint:create_food' shop_id %}" method="post">
+                {% csrf_token %}
+                {{ form.as_table }}
+                {% if food_category_list %}
+                {% for category in food_category_list %}
+				<div class="radio">
+					 <label>
+                         <input type="radio" id="food_category_id" name="food_category_id" value="{{ category.pk }}"/>
+                         {{ category.name }}
+                         <a href="{% url 'geekpoint:delete_foodcategory' category.id %}">删除</a>
+                     </label>
+				</div>
+                {% endfor %}
+                {% else %}
+                <p>目前没有食品分类</p>
+                {% endif %}
+				 <button class="btn btn-default" type="submit">新建</button>
+			</form>
+            <form role="form" action="{% url 'geekpoint:create_foodcategory' shop_id %}" method="post">
+                {% csrf_token %}
+                {{ food_category_form.as_table }}
+                <button class="btn btn-default" type="submit">新建</button>
+            </form>
+		</div>
+	</div>
+</div>
+{% endblock %}
