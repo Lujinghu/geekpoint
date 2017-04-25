@@ -1,7 +1,8 @@
 from django.db import models
-#由于我是直接将网上已经有的用户注册包拷贝进来我的项目作为一个模块，所以引入的时候应该是以上级目录来引入
+#由于我是直接将网上已经有的用户注册包拷贝进来我的项目作为一个模块，所以引入的时候应该是以上级目录来引入?
 from django.utils import timezone
 from users.models import User
+from django.core.urlresolvers import reverse
 
 class ShopManager(models.Manager):
 
@@ -20,10 +21,20 @@ class Shop(models.Model):
     created_time = models.DateTimeField(auto_now_add=True)
     modified_time = models.DateTimeField(auto_now=True)
 
+    #用来取代外面自定义的检测是否管理者的方法，尝试封装在model中，这样大约会比较好
+    def check_manager(self, user):
+        shop_manager_list = self.shop_managers.all()
+        return user in shop_manager_list
+
     def __str__(self):
         return self.name
 
+    #定义覆盖django中的实例方法，get_absolute_url，用来获取对象的管理视图，将这个业务逻辑封装在里面
+    def get_absolute_url(self):
+        return reverse('geekpoint:charge_shop', args=[str(self.id)])
+
     objects = ShopManager()
+
 
 
 class OrderManagger(models.Manager):
@@ -52,10 +63,11 @@ class Order(models.Model):
     )
 
     #订单号，为了保持数据的一致性，订单号设置为唯一值，并且在保存订单的时候捕捉异常，如果失败，就订单号+1以后再保存，相当于排队，或者加锁
-    order_no = models.CharField('订单号', unique_for_date='created_time', null=True, max_length=256)
+    #order_no = models.CharField('订单号', unique_for_date='created_time', null=True, max_length=256)
+    order_no = models.CharField('订单号', unique=True, null=True, max_length=256)
     table_no = models.CharField('桌号', max_length=200, null=True)
     total = models.FloatField('总价', default=0)
-    shop = models.ForeignKey(Shop, verbose_name='商店') #定义一个订单与商店的一对多关系
+    shop = models.ForeignKey(Shop, verbose_name='商店', on_delete=models.SET_NULL, null=True) #定义一个订单与商店的一对多关系
     consumer = models.ForeignKey(User, default=None, verbose_name='顾客')
     foods = models.ManyToManyField('Food', verbose_name='菜品', through='OrderFood')
     is_delete_by_consumer = models.BooleanField(default=False)
@@ -67,7 +79,13 @@ class Order(models.Model):
     def __str__(self):
         return '订单: %s' % self.order_no
 
+    def get_absolute_url(self):
+        return reverse('geekpoint:get_order', args=[str(self.id)])
+
     objects = OrderManagger()
+
+    def check_consumer(self, user):
+        return self.consumer is user
 
 
 class FoodCategory(models.Model):
@@ -109,7 +127,10 @@ class Food(models.Model):
 
     def __str__(self):
         return self.name
-
+    '''
+    def get_absolute_url(self):
+        return reverse('geekpoint:charge_food')
+    '''
     objects = FoodManager()#更改默认查询管理器
 
 #中间表，用来查询食物数量
