@@ -35,9 +35,6 @@ def check_manager_dec(func):
             return func(request, *args, **kwargs)
     return wrapper
 
-def return_index():
-    return HttpResponseRedirect(reverse('geekpoint:index'))
-
 
 #定义首页视图，如果用户已经登陆，则显示进入或者注册商户的入口，如果未登录，则显示请登录
 def index(request):
@@ -105,7 +102,7 @@ def edit_shop(request, shop_id):
             return HttpResponseRedirect(reverse('geekpoint:charge_shop', kwargs={'shop_id': shop_id}))
     else:
         form = forms.ShopForm(instance=shop)
-    return render(request, 'geekpoint/edit_shop.html', {'form': form})
+    return render(request, 'geekpoint/edit_shop.html', {'form': form, 'shop': shop})
     #注意，reverse函数只是根据视图名反向解析出一个url值，而不是响应，所以要用重定向函数生成响应对象
 
 
@@ -115,7 +112,8 @@ def edit_shop(request, shop_id):
 def delete_shop(request, shop_id):
     shop = get_object_or_404(models.Shop, pk=shop_id)
     shop.delete()
-    return_index()
+    messages.success(request, '商店：{}已经成功删除'.format(shop.name))
+    return HttpResponseRedirect(reverse('geekpoint:index'))
 
 
 #管理食物信息视图，查询并且返回现在的食物清单
@@ -145,25 +143,26 @@ def create_food(request, shop_id):
         'food_category_list': food_category_list,
         'food_category_form': food_category_form,
     }
-    if request.method == 'GET':
+    if request.method == 'POST':
+        form = forms.FoodForm(request.POST)
+        if form.is_valid():
+            food = form.save(commit=False)
+            try:
+                food_category = models.FoodCategory.objects.get(id=request.POST.get('food_category_id'))
+                food.category = food_category
+            except BaseException:
+                pass
+            food.shop = shop
+            form.save()
+            messages.success(request, '食品：{}已经创建！'.format(food.name))
+            return HttpResponseRedirect(reverse('geekpoint:charge_food', args=[shop_id]))
+        #上面返回渲染的时候出了问题，应该是reverse函数没有用好
+        else:
+            context['form'] = form
+    else:
         form = forms.FoodForm()
         context['form'] = form
-        return render(request, 'geekpoint/create_food.html', context)
-    form = forms.FoodForm(request.POST)
-    if form.is_valid():
-        food = form.save(commit=False)
-        try:
-            food_category = models.FoodCategory.objects.get(id=request.POST.get('food_category_id'))
-            food.category = food_category
-        except BaseException:
-            pass
-        food.shop = shop
-        form.save()
-        return HttpResponseRedirect(reverse('geekpoint:charge_food', args=[shop_id]))
-        #上面返回渲染的时候出了问题，应该是reverse函数没有用好
-    else:
-        context['form'] = form
-        return render(request, 'geekpoint/create_food.html', context)
+    return render(request, 'geekpoint/create_food.html', context)
 
 
 #@login_required()
@@ -176,9 +175,8 @@ def create_foodcategory(request, shop_id):
             food_category = food_category_form.save(commit=False)
             food_category.shop = shop
             food_category.save()
-        return HttpResponseRedirect(reverse('geekpoint:create_food', args=[shop_id]))
-    else:
-        return HttpResponseRedirect(reverse('geekpoint:create_food', args=[shop_id]))
+            messages.success(request, '你已成功创建食品分类：% s' % food_category.name)
+    return HttpResponseRedirect(reverse('geekpoint:create_food', args=[shop_id]))
 
 
 #@login_required()
@@ -186,6 +184,7 @@ def create_foodcategory(request, shop_id):
 def delete_foodcategory(request, food_category_id):
     food_category = get_object_or_404(models.FoodCategory, id=food_category_id)
     food_category.delete()
+    messages.success(request, '食物分类已经删除！')
     return HttpResponseRedirect(reverse('geekpoint:create_food', args=[food_category.shop.id]))
 
 #变更食品信息;问题，想办法将它跟创建食品的视图合并
@@ -193,16 +192,14 @@ def delete_foodcategory(request, food_category_id):
 @check_manager_dec
 def edit_food(request, food_id):
     food = get_object_or_404(models.Food, pk=food_id)
-    if request.method == 'GET':
-        #渲染一张食物视图表单
-        form = forms.FoodForm(instance=food)
-        return render(request, 'geekpoint/edit_food.html', {'form': form, 'food_id': food_id})
-    form = forms.FoodForm(request.POST, instance=food)
-    if form.is_valid():
-        form.save()
-        return HttpResponseRedirect(reverse('geekpoint:charge_food', args=[food.shop.pk]))
-    else:
-        return render(request, 'geekpoint/edit_food.html', {'form': form, 'food_id': food_id})
+    if request.method == 'POST':
+        form = forms.FoodForm(request.POST, instance=food)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(reverse('geekpoint:charge_food', args=[food.shop.pk]))
+    #渲染一张食物视图表单
+    form = forms.FoodForm(instance=food)
+    return render(request, 'geekpoint/edit_food.html', {'form': form, 'food_id': food_id})
 
 
 #删除食品信息
@@ -211,6 +208,7 @@ def edit_food(request, food_id):
 def delete_food(request, food_id):
     food = get_object_or_404(models.Food, pk=food_id)
     food.delete()
+    messages.success(request, '食物已经删除！')
     return HttpResponseRedirect(reverse('geekpoint:charge_food', kwargs={'shop_id': food.shop.pk }))
 
 
@@ -228,6 +226,7 @@ def shop_mark_order(request, order_id):
     order = get_object_or_404(models.Order, pk=order_id)
     order.status = request.POST.get('status')
     order.save()
+    messages.success(request, '订单状态已更改！')
     return HttpResponseRedirect(reverse('geekpoint:charge_shop', args=[order.shop.pk]))
     #额，之后应该怎么处理？直接返回原来的页面？？
 
@@ -239,6 +238,7 @@ def shop_delete_order(request, order_id):
     order = get_object_or_404(models.Order, pk=order_id)
     order.is_delete_by_shop = True
     order.save()#计划使用软删除
+    messages.success(request, '订单已经删除')
     return HttpResponseRedirect(reverse('geekpoint:charge_shop', args=[order.shop.pk]))
 
 
@@ -315,6 +315,7 @@ def order_food(request, shop_id, food_category_id=None):
                     )
         orderfood.save()
         i += 1
+    messages.success(request, '恭喜你，你已经成功下单！')
     return HttpResponseRedirect(reverse('geekpoint:get_order', args=[order.id]))
 
 
@@ -333,6 +334,7 @@ def consumer_delete_order(request, order_id):
     if order.check_consumer(request.user):
         order.is_delete_by_consumer = True
         order.save()
+        messages.success(request, '删除订单成功！')
         return HttpResponseRedirect(reverse('geekpoint:index'))
 
 
