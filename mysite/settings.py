@@ -132,11 +132,3 @@ USERS_SPAM_PROTECTION = False  # important!
 
 #  ---------------------------------------------------------
 #  Email
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-
-EMAIL_USE_TLS = False
-EMAIL_HOST = 'smtp.qq.com'
-EMAIL_PORT = 25
-EMAIL_HOST_USER = '1006055467@qq.com'
-EMAIL_HOST_PASSWORD = 'lujinghu170679'
-DEFAULT_FROM_EMAIL = '1006055467@qq.com'
