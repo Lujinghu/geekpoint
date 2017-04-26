@@ -8,14 +8,16 @@ from django.core.urlresolvers import reverse
 import functools
 
 #再研究一下，能不能将已经查询出来的shop传递给视图函数，这样就可以避免查找两次了
-@login_required()#将两个装饰器合并，节省代码量
+#@login_required()#将两个装饰器合并，节省代码量
+#注意，似乎这个装饰器不能用来装饰一个装饰器？只能用来装饰这个装饰器里面的函数
+#所以装饰器定义在上面会报错
 def check_manager_dec(func):
     '''
     装饰器，用来判断当前用户是否商店的管理人员，从而判断是不是应该拒绝访问
     :param func: 
     :return: 
     '''
-    #@login_required()
+    @login_required()
     @functools.wraps(func)#python内置的装饰器，用来给装饰器返回的新函数的__name__属性进行更改，改回跟原来同名就好了
     def wrapper(request, *args, **kwargs):
         '''
@@ -26,8 +28,9 @@ def check_manager_dec(func):
         if shop.check_manager(request.user):
             #return True
         '''
-        shop = get_object_or_404(models.Shop, ig=kwargs.get('shop_id'))
-        if shop.check_manager(request.user):
+        shop = get_object_or_404(models.Shop, id=kwargs.get('shop_id'))
+        user = request.user
+        if shop.check_manager(user):
             return func(request, *args, **kwargs)
     return wrapper
 
@@ -69,8 +72,7 @@ def create_shop(request):
 
 
 # 商店管理视图，展示订单信息，以及商店的管理信息
-@check_manager_dec()
-#@login_required()
+@check_manager_dec
 def charge_shop(request, shop_id):
     shop = get_object_or_404(models.Shop, pk=shop_id)
     # order_list = shop.order_set.filter(created_time__day=timezone.now().day)#m妈蛋，这句查询语句出了问题，真是坑爹
@@ -146,7 +148,7 @@ def create_food(request, shop_id):
     if form.is_valid():
         food = form.save(commit=False)
         try:
-            food_category = models.FoodCategory.get(id=request.POST.get('food_category_id'))
+            food_category = models.FoodCategory.objects.get(id=request.POST.get('food_category_id'))
             food.category = food_category
         except BaseException:
             pass
