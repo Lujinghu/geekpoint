@@ -37,5 +37,14 @@
 </nav>
 
 <div class="container">
+    {% if messages %}
+	<div class="row clearfix">
+		<div class="col-md-12 column">
+            {% for message in messages %}
+            <div class="alert alert-info">{{ message }}</div>
+            {% endfor %}
+		</div>
+	</div>
+    {% endif %}
   {% block content %}{% endblock %}
 </div>

@@ -6,6 +6,7 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
 import functools
+from django.contrib import messages
 
 #再研究一下，能不能将已经查询出来的shop传递给视图函数，这样就可以避免查找两次了
 #@login_required()#将两个装饰器合并，节省代码量
@@ -66,12 +67,14 @@ def create_shop(request):
         #上面有点出错了，因为多对多字段是一个set，所以不能像下面那样当作外键那样直接赋值，应该使用add
         #shop.shop_manager = request.user
         shop.save()
+        messages.success(request, "你已经成功创建商店: %s！" % shop.name)
         return HttpResponseRedirect(reverse('geekpoint:index'))
     else:
         return render(request, 'geekpoint/edit_shop.html', {'form': form})
 
 
 # 商店管理视图，展示订单信息，以及商店的管理信息
+#注意，如果装饰器没有参数，就不要带上一个多余的括号，否则，可能就会出现异常
 @check_manager_dec
 def charge_shop(request, shop_id):
     shop = get_object_or_404(models.Shop, pk=shop_id)
@@ -84,23 +87,25 @@ def charge_shop(request, shop_id):
         'x_order_list': x_order_list,
         'q_order_list': q_order_list,
     }
+    messages.info(request, "欢迎您来到商店管理后台！")
     return render(request, 'geekpoint/charge_shop.html', context)
 
 
 #更改商店信息视图,变更成功则返回charge_shop视图
+#优化了一下代码
 @check_manager_dec
 #@login_required()
 def edit_shop(request, shop_id):
     shop = get_object_or_404(models.Shop, pk=shop_id)  #注意，这里我犯了一个错误，虽然路由的参数会被框架自动传入，可是也得我们在视图函数里面声明参数才行
-    if request.method == 'GET':
-        form = forms.ShopForm(instance=shop)
-        return render(request, 'geekpoint/edit_shop.html', {'form': form})
-    form = forms.ShopForm(request.POST, instance=shop)
-    if form.is_valid():
-        form.save()
-        return HttpResponseRedirect(reverse('geekpoint:charge_shop', kwargs={'shop_id': shop_id}))
+    if request.method == 'POST':
+        form = forms.ShopForm(instance=shop, data=request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, '商店信息更新成功！')
+            return HttpResponseRedirect(reverse('geekpoint:charge_shop', kwargs={'shop_id': shop_id}))
     else:
-        return render(request, 'geekpoint/edit_shop.html', {'form': form})
+        form = forms.ShopForm(instance=shop)
+    return render(request, 'geekpoint/edit_shop.html', {'form': form})
     #注意，reverse函数只是根据视图名反向解析出一个url值，而不是响应，所以要用重定向函数生成响应对象
 
 
