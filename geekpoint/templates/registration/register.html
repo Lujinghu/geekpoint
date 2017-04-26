@@ -1,0 +1,11 @@
+{% extends "geekpoint/base.html" %}
+
+{% block content %}
+    <h1>创建一个极客点账户</h1>
+    <p>请填写下列表单以注册极客点账号:</p>
+    <form action="." method="post">
+        {{ user_form.as_p }}
+        {% csrf_token %}
+        <p><input type="submit" value="创建我的账号"></p>
+    </form>
+{% endblock %}

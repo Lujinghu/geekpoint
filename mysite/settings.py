@@ -33,14 +33,13 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = (
+    'geekpoint',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'geekpoint',
-    'users',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -109,26 +108,3 @@ STATICFILES_DIRS = (
 )
 LOGIN_REDIRECT_URL = '/'#终于找到坑在什么地方了，登陆后重定义的URL，需要你在前面加一个反斜杠，如果没有加，就会在当前的URL之后加上这个URL地址，深坑啊！！！！
 #  ---------------------------------------------------------
-AUTH_USER_MODEL = 'users.User'
-
-USERS_REGISTRATION_OPEN = True
-
-USERS_VERIFY_EMAIL = True
-
-USERS_AUTO_LOGIN_ON_ACTIVATION = True
-
-USERS_EMAIL_CONFIRMATION_TIMEOUT_DAYS = 3
-
-# Specifies minimum length for passwords:
-USERS_PASSWORD_MIN_LENGTH = 5
-
-# Specifies maximum length for passwords:
-USERS_PASSWORD_MAX_LENGTH = None
-
-# the complexity validator, checks the password strength
-USERS_CHECK_PASSWORD_COMPLEXITY = True
-
-USERS_SPAM_PROTECTION = False  # important!
-
-#  ---------------------------------------------------------
-#  Email

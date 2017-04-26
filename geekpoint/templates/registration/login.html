@@ -1,34 +1,19 @@
-{% extends 'geekpoint/base.html' %}
-{% load i18n %}
+{% extends "geekpoint/base.html" %}
 
-{% block container %}
-    <div class="content">
-        {% if form.errors %}
-            <div class="alert alert-danger">
-                <p><strong>{% trans "Oh snap!" %}</strong> {% trans "Please enter a correct username and password. Note that both fields are case-sensitive." %}</p>
-            </div>
-        {% endif %}
-        <form action="{% url 'django.contrib.auth.views.login' %}" method="post" class="form-horizontal" role="form">{% csrf_token %}
-            <legend><span class="col-sm-offset-1">{% trans 'Log in' %}</span></legend>
-            {% for field in form %}
-                {% include 'registration/form_field.html' %}
-            {% endfor %}
-            <div class="form-group">
-                <div class="col-sm-offset-2 col-sm-10">
-                  <button type="submit" class="btn btn-default">{% trans 'Log in' %}</button>
-                  &nbsp;<button type="reset" class="btn">{% trans 'Cancel' %}</button>
-                </div>
-            </div>
+{% block content %}
+    {% if form.errors %}
+    <P>
+        你的账户密码不匹配，请重试！
+    </P>
+    {% else %}
+    <p>请填写下列表单以登陆极客点</p>
+    {% endif %}
+    <div class="login-form">
+        <form action="{% url 'geekpoint:login' %}" method="post">
+            {{ form.as_p }}
+            {% csrf_token %}
+            <input type="hidden" name="next" value="{{ next }}"/>
+            <p><input type="submit" value="登陆"></p>
         </form>
-        <p><a href="{% url 'django.contrib.auth.views.password_reset' %}">{% trans "Reset my password" %}</a></p>
-        <script type="text/javascript">
-            $(function(){
-                $(".alert-message").alert();
-                $('#mainForm').submit(function(){
-                    $('#submit').button('loading');
-                })
-            });
-            document.forms[1].elements[2].focus();
-        </script>
     </div>
 {% endblock %}

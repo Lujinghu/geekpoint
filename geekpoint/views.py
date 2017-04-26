@@ -53,7 +53,7 @@ def index(request):
 def create_shop(request):
     if request.method == 'GET':
         form = forms.ShopForm()
-        return render(request, 'geekpoint/edit_shop.html', {'form': form})
+        return render(request, 'geekpoint/create_shop.html', {'form': form})
     form = forms.ShopForm(request.POST)
     if form.is_valid():
         shop = form.save(commit=False)#注意，由于表单中并不包含所有的字段，所以在调用表单对象的save（）方法是，选择不提交，然后额外设置其他的参数
@@ -67,7 +67,7 @@ def create_shop(request):
         messages.success(request, "你已经成功创建商店: %s！" % shop.name)
         return HttpResponseRedirect(reverse('geekpoint:index'))
     else:
-        return render(request, 'geekpoint/edit_shop.html', {'form': form})
+        return render(request, 'geekpoint/create_shop.html', {'form': form})
 
 
 # 商店管理视图，展示订单信息，以及商店的管理信息
@@ -337,6 +337,21 @@ def consumer_delete_order(request, order_id):
         messages.success(request, '删除订单成功！')
         return HttpResponseRedirect(reverse('geekpoint:index'))
 
+def register(request):
+    if request.method == 'POST':
+        user_form = forms.UserRegistrationForm(request.POST)
+        if user_form.is_valid():
+            new_user = user_form.save(commit=False)
+            new_user.set_password(
+                user_form.cleaned_data['password']
+            )
+            #使用set_password方法来设置密码，而不是直接将密码赋值，这是框架设计的时候的一个安全性的考查
+            new_user.save()
+            #注意，这是一个比较好的实践，也就是在一对一关联关系的对象创建的时候，先为其创建一个空的关联对象，这样会比较好，高校
+            return render(request, 'registration/register_done.html', {'new_user': new_user})
+    else:
+        user_form = forms.UserRegistrationForm()
+    return render(request, 'registration/register.html', {'user_form': user_form})
 
 
 

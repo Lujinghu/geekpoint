@@ -26,11 +26,11 @@
         </div>
         <ul class="nav navbar-nav navbar-right">
             {% if request.user.is_authenticated %}
-                <li><p class="navbar-text">欢迎你，{{ request.user.name }}</p></li>
-                <li><a href="{% url 'users_logout' %}"><span class="glyphicon glyphicon-log-in"></span> 退出账号</a></li>
+                <li><p class="navbar-text">欢迎你，{{ request.user.username }}</p></li>
+                <li><a href="{% url 'geekpoint:logout' %}"><span class="glyphicon glyphicon-log-in"></span> 退出账号</a></li>
             {% else %}
-                <li><a href="{% url 'users_register' %}"><span class="glyphicon glyphicon-user"></span> 注册</a></li>
-                <li><a href="{% url 'users_login' %}"><span class="glyphicon glyphicon-log-in"></span> 登录</a></li>
+                <li><a href="{% url 'geekpoint:register' %}"><span class="glyphicon glyphicon-user"></span> 注册</a></li>
+                <li><a href="{% url 'geekpoint:login' %}"><span class="glyphicon glyphicon-log-in"></span> 登录</a></li>
             {% endif %}
         </ul>
     </div>

@@ -1,0 +1,7 @@
+{% extends "geekpoint/base.html" %}
+
+{% block content %}
+    <h1>欢迎您：{{ new_user.username }}!</h1>
+    <p>您已成功创建极客点账号！</p>
+    <p><a href="{% url 'geekpoint:login' %}">马上登陆</a>以使用相关服务。</p>
+{% endblock %}

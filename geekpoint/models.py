@@ -1,7 +1,7 @@
 from django.db import models
 #由于我是直接将网上已经有的用户注册包拷贝进来我的项目作为一个模块，所以引入的时候应该是以上级目录来引入?
 from django.utils import timezone
-from users.models import User
+from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
 
 class ShopManager(models.Manager):

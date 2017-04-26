@@ -1,5 +1,6 @@
 from django import forms
 from . import models
+from django.contrib.auth.models import User
 
 class FoodForm(forms.ModelForm):
     #定义一个元类，用来描述表单属性
@@ -19,3 +20,24 @@ class ShopForm(forms.ModelForm):
     class Meta:
         model = models.Shop
         fields = ['name', 'address', 'phone', 'cardAccount', 'table_nums', 'is_open']
+
+
+class LoginForm(forms.Form):
+    username = forms.CharField()
+    password = forms.CharField(widget=forms.PasswordInput)
+
+
+class UserRegistrationForm(forms.ModelForm):
+    password = forms.CharField(label='密码', widget=forms.PasswordInput)
+    password2 = forms.CharField(label='再次输入密码', widget=forms.PasswordInput)
+
+    class Meta:
+        model = User
+        fields = ('username', 'email')
+
+    def clean_password2(self):
+        cd = self.cleaned_data
+        #每个表单实例都会有个cleaned_data字典
+        if cd['password'] != cd['password2']:
+            raise forms.ValidationError('Passwords don\'t match.')
+        return cd['password2']
