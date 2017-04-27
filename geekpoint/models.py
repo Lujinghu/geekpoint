@@ -79,7 +79,7 @@ class Order(models.Model):
     objects = OrderManagger()
 
     def check_consumer(self, user):
-        return self.consumer is user
+        return self.consumer == user#注意：不能用is关键字
 
 
 class FoodCategory(models.Model):
