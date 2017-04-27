@@ -1,5 +1,4 @@
 from django.db import models
-#由于我是直接将网上已经有的用户注册包拷贝进来我的项目作为一个模块，所以引入的时候应该是以上级目录来引入?
 from django.utils import timezone
 from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
@@ -21,7 +20,6 @@ class Shop(models.Model):
     created_time = models.DateTimeField(auto_now_add=True)
     modified_time = models.DateTimeField(auto_now=True)
 
-    #用来取代外面自定义的检测是否管理者的方法，尝试封装在model中，这样大约会比较好
     def check_manager(self, user):
         shop_manager_list = self.shop_managers.all()
         return user in shop_manager_list
@@ -29,7 +27,6 @@ class Shop(models.Model):
     def __str__(self):
         return self.name
 
-    #定义覆盖django中的实例方法，get_absolute_url，用来获取对象的管理视图，将这个业务逻辑封装在里面
     def get_absolute_url(self):
         return reverse('geekpoint:charge_shop', args=[str(self.id)])
 
@@ -55,15 +52,12 @@ class OrderManagger(models.Manager):
     #上面的查询语句使用是没有问题的，但是要先安装一个叫做pytz的模块，这个模块可以正确的处理时间信息
 
 class Order(models.Model):
-   #险些搞错了，下面应是用元祖来定义choice字段，因为必须是不可变的类型
     ORDER_STATUS = (
         ('x', '已下单'),
         ('q', '已确认'),
         ('f', '已付款'),
     )
 
-    #订单号，为了保持数据的一致性，订单号设置为唯一值，并且在保存订单的时候捕捉异常，如果失败，就订单号+1以后再保存，相当于排队，或者加锁
-    #order_no = models.CharField('订单号', unique_for_date='created_time', null=True, max_length=256)
     order_no = models.CharField('订单号', unique=True, null=True, max_length=256)
     table_no = models.CharField('桌号', max_length=200, null=True)
     total = models.FloatField('总价', default=0)
