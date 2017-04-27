@@ -2,25 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cb3dfd78-31f7-4e55-b7e6-b833c8093165" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/db.sqlite3" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/geekpoint/templates/registration/form_field.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/geekpoint/templates/registration/logged_out.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/geekpoint/templates/registration/login.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/geekpoint/templates/registration/password_change_done.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/geekpoint/templates/registration/password_change_form.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/geekpoint/templates/registration/password_reset_complete.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/geekpoint/templates/registration/password_reset_confirm.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/geekpoint/templates/registration/password_reset_done.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/geekpoint/templates/registration/password_reset_form.html" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/geekpoint/forms.py" afterPath="$PROJECT_DIR$/geekpoint/forms.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/geekpoint/models.py" afterPath="$PROJECT_DIR$/geekpoint/models.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/geekpoint/templates/geekpoint/base.html" afterPath="$PROJECT_DIR$/geekpoint/templates/geekpoint/base.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/geekpoint/templates/geekpoint/charge_food.html" afterPath="$PROJECT_DIR$/geekpoint/templates/geekpoint/charge_food.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/geekpoint/templates/geekpoint/charge_shop.html" afterPath="$PROJECT_DIR$/geekpoint/templates/geekpoint/charge_shop.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/geekpoint/templates/geekpoint/create_food.html" afterPath="$PROJECT_DIR$/geekpoint/templates/geekpoint/create_food.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/geekpoint/templates/geekpoint/edit_food.html" afterPath="$PROJECT_DIR$/geekpoint/templates/geekpoint/edit_food.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/geekpoint/urls.py" afterPath="$PROJECT_DIR$/geekpoint/urls.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/geekpoint/views.py" afterPath="$PROJECT_DIR$/geekpoint/views.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mysite/settings.py" afterPath="$PROJECT_DIR$/mysite/settings.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mysite/urls.py" afterPath="$PROJECT_DIR$/mysite/urls.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/requirements.txt" afterPath="$PROJECT_DIR$/requirements.txt" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -47,11 +35,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/geekpoint/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-4005">
-              <caret line="69" column="48" lean-forward="false" selection-start-line="69" selection-start-column="48" selection-end-line="69" selection-end-column="48" />
+            <state relative-caret-position="555">
+              <caret line="37" column="64" lean-forward="false" selection-start-line="37" selection-start-column="64" selection-end-line="37" selection-end-column="64" />
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
               </folding>
@@ -59,31 +47,41 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="login.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/geekpoint/templates/registration/login.html">
+      <file leaf-file-name="charge_food.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/geekpoint/templates/geekpoint/charge_food.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="30">
-              <caret line="2" column="19" lean-forward="false" selection-start-line="2" selection-start-column="19" selection-end-line="2" selection-end-column="19" />
+            <state relative-caret-position="119">
+              <caret line="19" column="63" lean-forward="false" selection-start-line="19" selection-start-column="63" selection-end-line="19" selection-end-column="63" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="password_change_done.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/geekpoint/templates/registration/password_change_done.html">
+      <file leaf-file-name="create_food.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/geekpoint/templates/geekpoint/create_food.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="60">
-              <caret line="4" column="17" lean-forward="false" selection-start-line="4" selection-start-column="17" selection-end-line="4" selection-end-column="17" />
+            <state relative-caret-position="210">
+              <caret line="14" column="78" lean-forward="false" selection-start-line="14" selection-start-column="78" selection-end-line="14" selection-end-column="78" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="password_change_form.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/geekpoint/templates/registration/password_change_form.html">
+      <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/geekpoint/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="35" lean-forward="false" selection-start-line="0" selection-start-column="35" selection-end-line="0" selection-end-column="35" />
+            <state relative-caret-position="297">
+              <caret line="56" column="48" lean-forward="true" selection-start-line="56" selection-start-column="48" selection-end-line="56" selection-end-column="48" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="charge_shop.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/geekpoint/templates/geekpoint/charge_shop.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="98">
+              <caret line="43" column="87" lean-forward="false" selection-start-line="43" selection-start-column="87" selection-end-line="43" selection-end-column="87" />
               <folding />
             </state>
           </provider>
@@ -99,17 +97,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="register_done.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/geekpoint/templates/registration/register_done.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="75">
-              <caret line="5" column="61" lean-forward="false" selection-start-line="5" selection-start-column="61" selection-end-line="5" selection-end-column="61" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="forms.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="forms.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/geekpoint/forms.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="208">
@@ -117,26 +105,6 @@
               <folding>
                 <element signature="e#0#24#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="logged_out.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/geekpoint/templates/registration/logged_out.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="60">
-              <caret line="4" column="63" lean-forward="false" selection-start-line="4" selection-start-column="63" selection-end-line="4" selection-end-column="63" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="edit_food.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/geekpoint/templates/geekpoint/edit_food.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -181,14 +149,11 @@
         <option value="$PROJECT_DIR$/geekpoint/templates/geekpoint/order_detail.html" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/geekpoint/templates/geekpoint/edit_shop.html" />
-        <option value="$PROJECT_DIR$/geekpoint/urls.py" />
         <option value="$PROJECT_DIR$/geekpoint/models.py" />
         <option value="$PROJECT_DIR$/mysite/settings.py" />
         <option value="$PROJECT_DIR$/geekpoint/templates/registration/password_change_form.html" />
         <option value="$PROJECT_DIR$/mysite/urls.py" />
         <option value="$PROJECT_DIR$/geekpoint/templates/geekpoint/create_shop.html" />
-        <option value="$PROJECT_DIR$/geekpoint/views.py" />
-        <option value="$PROJECT_DIR$/geekpoint/templates/geekpoint/base.html" />
         <option value="$PROJECT_DIR$/requirements.txt" />
         <option value="$PROJECT_DIR$/geekpoint/templates/registration/password_change_done.html" />
         <option value="$PROJECT_DIR$/geekpoint/templates/registration/logged_out.html" />
@@ -196,6 +161,13 @@
         <option value="$PROJECT_DIR$/geekpoint/templates/registration/register_done.html" />
         <option value="$PROJECT_DIR$/geekpoint/templates/registration/login.html" />
         <option value="$PROJECT_DIR$/geekpoint/forms.py" />
+        <option value="$PROJECT_DIR$/geekpoint/templates/geekpoint/base.html" />
+        <option value="$PROJECT_DIR$/geekpoint/urls.py" />
+        <option value="$PROJECT_DIR$/geekpoint/templates/geekpoint/charge_shop.html" />
+        <option value="$PROJECT_DIR$/geekpoint/templates/geekpoint/edit_food.html" />
+        <option value="$PROJECT_DIR$/geekpoint/templates/geekpoint/charge_food.html" />
+        <option value="$PROJECT_DIR$/geekpoint/templates/geekpoint/create_food.html" />
+        <option value="$PROJECT_DIR$/geekpoint/views.py" />
       </list>
     </option>
   </component>
@@ -524,20 +496,6 @@
     <entry file="file://$PROJECT_DIR$/mysite/requirements.txt" />
     <entry file="file://$PROJECT_DIR$/mysite/Procifile" />
     <entry file="file://$PROJECT_DIR$/mysite/geekpoint/views.py" />
-    <entry file="file://$PROJECT_DIR$/geekpoint/templates/geekpoint/create_food.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/geekpoint/templates/geekpoint/charge_food.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/geekpoint/templates/geekpoint/order_detail.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="345">
@@ -571,14 +529,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="1" lean-forward="false" selection-start-line="0" selection-start-column="1" selection-end-line="0" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/geekpoint/templates/geekpoint/charge_shop.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -616,14 +566,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/geekpoint/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="263">
-          <caret line="57" column="106" lean-forward="false" selection-start-line="57" selection-start-column="106" selection-end-line="57" selection-end-column="106" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/geekpoint/templates/geekpoint/edit_shop.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -636,14 +578,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
           <caret line="5" column="69" lean-forward="false" selection-start-line="5" selection-start-column="69" selection-end-line="5" selection-end-column="69" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/geekpoint/templates/geekpoint/base.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="109">
-          <caret line="28" column="67" lean-forward="false" selection-start-line="28" selection-start-column="67" selection-end-line="28" selection-end-column="67" />
           <folding />
         </state>
       </provider>
@@ -668,14 +602,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="35" lean-forward="false" selection-start-line="0" selection-start-column="35" selection-end-line="0" selection-end-column="35" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/geekpoint/templates/geekpoint/edit_food.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -712,6 +638,64 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/geekpoint/forms.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="208">
+          <caret line="31" column="45" lean-forward="false" selection-start-line="31" selection-start-column="45" selection-end-line="31" selection-end-column="45" />
+          <folding>
+            <element signature="e#0#24#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/geekpoint/templates/geekpoint/edit_food.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" column="14" lean-forward="true" selection-start-line="10" selection-start-column="14" selection-end-line="10" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/geekpoint/templates/geekpoint/base.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-36">
+          <caret line="21" column="33" lean-forward="false" selection-start-line="21" selection-start-column="33" selection-end-line="21" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/geekpoint/templates/geekpoint/charge_shop.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="98">
+          <caret line="43" column="87" lean-forward="false" selection-start-line="43" selection-start-column="87" selection-end-line="43" selection-end-column="87" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/geekpoint/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="297">
+          <caret line="56" column="48" lean-forward="true" selection-start-line="56" selection-start-column="48" selection-end-line="56" selection-end-column="48" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/geekpoint/templates/geekpoint/charge_food.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="19" column="63" lean-forward="false" selection-start-line="19" selection-start-column="63" selection-end-line="19" selection-end-column="63" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/geekpoint/templates/geekpoint/create_food.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" column="78" lean-forward="false" selection-start-line="14" selection-start-column="78" selection-end-line="14" selection-end-column="78" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/geekpoint/models.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1643">
@@ -724,20 +708,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/geekpoint/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-4005">
-          <caret line="69" column="48" lean-forward="false" selection-start-line="69" selection-start-column="48" selection-end-line="69" selection-end-column="48" />
+        <state relative-caret-position="555">
+          <caret line="37" column="64" lean-forward="false" selection-start-line="37" selection-start-column="64" selection-end-line="37" selection-end-column="64" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/geekpoint/forms.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="208">
-          <caret line="31" column="45" lean-forward="false" selection-start-line="31" selection-start-column="45" selection-end-line="31" selection-end-column="45" />
-          <folding>
-            <element signature="e#0#24#0" expanded="true" />
           </folding>
         </state>
       </provider>

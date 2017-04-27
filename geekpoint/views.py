@@ -33,6 +33,9 @@ def check_manager_dec(func):
         user = request.user
         if shop.check_manager(user):
             return func(request, *args, **kwargs)
+        else:
+            messages.error(request, '对不起，您不是这家商店的管理员，无权进行该操作！！')
+            return HttpResponseRedirect(reverse('geekpoint:index'))
     return wrapper
 
 
@@ -181,35 +184,35 @@ def create_foodcategory(request, shop_id):
 
 #@login_required()
 @check_manager_dec
-def delete_foodcategory(request, food_category_id):
+def delete_foodcategory(request, shop_id, food_category_id):
     food_category = get_object_or_404(models.FoodCategory, id=food_category_id)
     food_category.delete()
     messages.success(request, '食物分类已经删除！')
-    return HttpResponseRedirect(reverse('geekpoint:create_food', args=[food_category.shop.id]))
+    return HttpResponseRedirect(reverse('geekpoint:create_food', args=[shop_id]))
 
 #变更食品信息;问题，想办法将它跟创建食品的视图合并
 #@login_required()
 @check_manager_dec
-def edit_food(request, food_id):
+def edit_food(request, shop_id, food_id):
     food = get_object_or_404(models.Food, pk=food_id)
     if request.method == 'POST':
         form = forms.FoodForm(request.POST, instance=food)
         if form.is_valid():
             form.save()
-            return HttpResponseRedirect(reverse('geekpoint:charge_food', args=[food.shop.pk]))
+            return HttpResponseRedirect(reverse('geekpoint:charge_food', args=[shop_id]))
     #渲染一张食物视图表单
     form = forms.FoodForm(instance=food)
-    return render(request, 'geekpoint/edit_food.html', {'form': form, 'food_id': food_id})
+    return render(request, 'geekpoint/edit_food.html', {'form': form, 'food_id': food_id, 'shop_id': shop_id})
 
 
 #删除食品信息
 #@login_required()
 @check_manager_dec
-def delete_food(request, food_id):
+def delete_food(request, shop_id, food_id):
     food = get_object_or_404(models.Food, pk=food_id)
     food.delete()
     messages.success(request, '食物已经删除！')
-    return HttpResponseRedirect(reverse('geekpoint:charge_food', kwargs={'shop_id': food.shop.pk }))
+    return HttpResponseRedirect(reverse('geekpoint:charge_food', kwargs={'shop_id': shop_id}))
 
 
 #浏览商店视图，可以查看所有的商店信息，并且提供到店消费的链接
@@ -222,24 +225,24 @@ def check_all_shop(request):
 #商户后台标记订单状态
 @check_manager_dec
 #@login_required()
-def shop_mark_order(request, order_id):
+def shop_mark_order(request, shop_id, order_id):
     order = get_object_or_404(models.Order, pk=order_id)
     order.status = request.POST.get('status')
     order.save()
     messages.success(request, '订单状态已更改！')
-    return HttpResponseRedirect(reverse('geekpoint:charge_shop', args=[order.shop.pk]))
+    return HttpResponseRedirect(reverse('geekpoint:charge_shop', args=[shop_id]))
     #额，之后应该怎么处理？直接返回原来的页面？？
 
 
 #商户后台删除订单
 #@login_required()
 @check_manager_dec
-def shop_delete_order(request, order_id):
+def shop_delete_order(request, shop_id, order_id):
     order = get_object_or_404(models.Order, pk=order_id)
     order.is_delete_by_shop = True
     order.save()#计划使用软删除
     messages.success(request, '订单已经删除')
-    return HttpResponseRedirect(reverse('geekpoint:charge_shop', args=[order.shop.pk]))
+    return HttpResponseRedirect(reverse('geekpoint:charge_shop', args=[shop_id]))
 
 
 #订食物，如果是GET请求，就返回商店的食物列表的模板供选择，如果是POST，就生成一张订单

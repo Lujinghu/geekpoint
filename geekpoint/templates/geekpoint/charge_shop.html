@@ -16,7 +16,7 @@
                     {% for food in order.foods.all %}
                     {{ food }}
                     {% endfor %}
-                    <form method="post" action="{% url 'geekpoint:order_mark' order.id %}">
+                    <form method="post" action="{% url 'geekpoint:order_mark' shop.id order.id %}">
 						{% csrf_token %}
 						<input type="hidden" id="status" name="status" value="q"/>
 						<input type="submit" value="确认"/>
@@ -41,7 +41,7 @@
 					菜品：{% for food in order.foods.all %}
                           {{ food }}
                           {% endfor %}
-					 <form method="post" action="{% url 'geekpoint:order_mark' order.id %}">
+					 <form method="post" action="{% url 'geekpoint:order_mark' shop.id order.id %}">
 						{% csrf_token %}
 						<input type="hidden" id="status" name="status" value="f"/>
 						<input type="submit" value="收钱结账"/>

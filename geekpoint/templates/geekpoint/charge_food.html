@@ -17,7 +17,7 @@
                 {% for food in food_list %}
 				<li>
 					{{ food.name }}&nbsp;售价：{{ food.price }}元&nbsp;库存情况：{{ food.get_status_display }}&nbsp;
-                    <a href="{% url 'geekpoint:edit_food' food.id %}">编辑</a>&nbsp;<a href="{% url 'geekpoint:delete_food' food.id %}">删除</a>
+                    <a href="{% url 'geekpoint:edit_food' shop.id food.id %}">编辑</a>&nbsp;<a href="{% url 'geekpoint:delete_food' shop.id food.id %}">删除</a>
 				</li>
 				{% endfor %}
 			</ol>

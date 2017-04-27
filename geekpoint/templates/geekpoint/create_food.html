@@ -12,7 +12,7 @@
 					 <label>
                          <input type="radio" id="food_category_id" name="food_category_id" value="{{ category.pk }}"/>
                          {{ category.name }}
-                         <a href="{% url 'geekpoint:delete_foodcategory' category.id %}">删除</a>
+                         <a href="{% url 'geekpoint:delete_foodcategory' shop_id category.id %}">删除</a>
                      </label>
 				</div>
                 {% endfor %}
