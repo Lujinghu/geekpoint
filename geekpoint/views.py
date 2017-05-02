@@ -48,7 +48,7 @@ def create_shop(request):
     form = forms.ShopForm(request.POST)
     if form.is_valid():
         shop = form.save()
-        shop.shop_managers.add(request.user)
+        shop.add_manager(request.user)
         shop.save()
         messages.success(request, "你已经成功创建商店: %s！" % shop.name)
         return HttpResponseRedirect(reverse('geekpoint:index'))
@@ -204,8 +204,7 @@ def shop_mark_order(request, shop_id, order_id):
 @check_manager_dec
 def shop_delete_order(request, shop_id, order_id):
     order = get_object_or_404(models.Order, pk=order_id)
-    order.is_delete_by_shop = True
-    order.save()
+    order.delete_by_shop()
     messages.success(request, '订单已经删除')
     return HttpResponseRedirect(reverse('geekpoint:charge_shop', args=[shop_id]))
 
@@ -281,8 +280,7 @@ def get_order(request, order_id):
 def consumer_delete_order(request, order_id):
     order = models.Order.objects.get(id=order_id)
     if order.check_consumer(request.user):
-        order.is_delete_by_consumer = True
-        order.save()
+        order.delete_by_consumer()
         messages.success(request, '删除订单成功！')
         return HttpResponseRedirect(reverse('geekpoint:index'))
 

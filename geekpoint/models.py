@@ -30,6 +30,9 @@ class Shop(models.Model):
     def get_absolute_url(self):
         return reverse('geekpoint:charge_shop', args=[str(self.id)])
 
+    def add_manager(self, user):
+        self.shop_managers.add(user)
+
     objects = ShopManager()
 
 
@@ -80,6 +83,14 @@ class Order(models.Model):
 
     def check_consumer(self, user):
         return self.consumer == user#注意：不能用is关键字
+
+    def delete_by_consumer(self):
+        self.is_delete_by_consumer = True
+        self.save()
+
+    def delete_by_shop(self):
+        self.is_delete_by_shop = True
+        self.save()
 
 
 class FoodCategory(models.Model):
