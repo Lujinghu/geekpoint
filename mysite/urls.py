@@ -18,5 +18,9 @@ from django.contrib import admin
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^account/', include('account.urls', namespace='account')),
+    url(r'^food/', include('food.urls', namespace='food')),
+    url(r'^shop/', include('shop.urls', namespace='shop')),
+    url(r'^order/', include('order.urls', namespace='order')),
     url(r'^', include('geekpoint.urls', namespace='geekpoint')),
 ]
