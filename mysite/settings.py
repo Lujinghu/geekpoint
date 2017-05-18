@@ -110,5 +110,6 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
 )
-LOGIN_REDIRECT_URL = '/'#终于找到坑在什么地方了，登陆后重定义的URL，需要你在前面加一个反斜杠，如果没有加，就会在当前的URL之后加上这个URL地址，深坑啊！！！！
+LOGIN_REDIRECT_URL = '/'
 #  ---------------------------------------------------------
+CART_SESSION_ID = 'cart'

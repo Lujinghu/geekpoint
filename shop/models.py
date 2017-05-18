@@ -30,6 +30,15 @@ class Shop(models.Model):
         return reverse('geekpoint:charge_shop', args=[str(self.id)])
 
     def add_manager(self, user):
+        if user in self.shop_managers.all():
+            return False
         self.shop_managers.add(user)
+        return True
+
+    def remove_manager(self, user):
+        if user in self.shop_managers.all():
+            return False
+        self.shop_managers.remove(user)
+        return True
 
     objects = ShopManager()

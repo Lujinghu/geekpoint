@@ -29,7 +29,7 @@ class Food(models.Model):
     )
 
     name = models.CharField('食物名', max_length=50)
-    price = models.FloatField('价格')
+    price = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='价格')
     shop = models.ForeignKey(Shop, verbose_name='商店')  #食物与商铺是一对多的关系，定义外键foreignKey在多的一侧
     category = models.ForeignKey(FoodCategory, null=True, blank=True)
     status = models.CharField('食品状态', max_length=1, choices=FOOD_STATUS, default='z')

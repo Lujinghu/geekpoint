@@ -54,15 +54,22 @@
             {% endif %}
 		</div>
 		<div class="col-md-4 column">
-			<h3>商店：<strong>{{ shop.name }}</strong></h3>
-			<ul>
+			{% if q_order_list %}
+			<h3>已付款订单列表</h3>
+			<ol>
+                {% for order in f_order_list %}
 				<li>
-					<p><a href="{% url 'geekpoint:edit_shop' shop.pk %}">编辑商店信息</a> </p>
+					单号：<strong>{{ order.order_no }}</strong>&nbsp;&nbsp;桌号：<strong>{{ order.table_no }}</strong><br/>
+					总价：<strong>{{ order.total }}</strong>元<br/>
+					菜品：{% for food in order.foods.all %}
+                          {{ food }}
+                          {% endfor %}
 				</li>
-				<li>
-					<p><a href="{% url 'geekpoint:charge_food' shop.pk %}">本店菜单管理</a></p>
-				</li>
-			</ul>
+                {% endfor %}
+			</ol>
+            {% else %}
+            <p>今天还未有确认的订单！</p>
+            {% endif %}
 		</div>
 	</div>
 </div>

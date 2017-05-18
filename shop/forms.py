@@ -7,3 +7,5 @@ class ShopForm(forms.ModelForm):
         fields = ['name', 'address', 'phone', 'cardAccount', 'table_nums', 'is_open']
 
 
+class AddShopManagerForm(forms.Form):
+    email = forms.EmailField(label='电子邮件')
