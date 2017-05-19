@@ -38,6 +38,7 @@ INSTALLED_APPS = (
     'food',
     'order',
     'account',
+    'vip',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

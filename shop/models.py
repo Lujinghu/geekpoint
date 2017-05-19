@@ -33,12 +33,14 @@ class Shop(models.Model):
         if user in self.shop_managers.all():
             return False
         self.shop_managers.add(user)
+        self.save()
         return True
 
     def remove_manager(self, user):
         if user in self.shop_managers.all():
             return False
         self.shop_managers.remove(user)
+        self.save()
         return True
 
     objects = ShopManager()
