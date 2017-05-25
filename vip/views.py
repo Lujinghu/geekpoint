@@ -10,7 +10,7 @@ from django.core.urlresolvers import reverse
 def vip_add(request, shop_id, user_id):
     user = get_object_or_404(User, id=user_id)
     shop = get_object_or_404(Shop, id=shop_id)
-    vip = Vip.objects.create(shop=shop, user=user)
+    Vip.objects.create(shop=shop, user=user)
     return redirect(reverse('shop:vip_charge', shop_id))
 
 
