@@ -83,7 +83,9 @@ def add_shop_manager(request, shop_id):
             try:
                 new_manager = User.objects.get(email=email)
             except BaseException:
-                messages.info(request, '该用户不存在！！')
+                new_manager = None
+            if not new_manager:
+                messages.success(request, '管理员不存在')
             if shop.add_manager(new_manager):
                 messages.success(request, '管理员{}已经添加成功！'.format(email))
             else:

@@ -3,6 +3,7 @@ from shop.models import Shop
 from django.core.urlresolvers import reverse
 from django.shortcuts import redirect
 
+
 class FoodCategory(models.Model):
     name = models.CharField('标签名', max_length=50)
     shop = models.ForeignKey(Shop, verbose_name='商店')
